@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+description: Entity tag for concurrency control and caching
+schema:
+  type: string

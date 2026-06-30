@@ -1,0 +1,61 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+openapi: 3.0.3
+info:
+  title: TiddlyWeb API
+  description: >
+    TiddlyWeb is a RESTful web API for managing tiddlers (small pieces of
+    content), 
+
+    bags (containers for tiddlers), and recipes (dynamic queries of tiddlers).
+
+
+    ## Content Negotiation & URL Extensions
+
+    TiddlyWeb supports content negotiation via standard `Accept` headers or by
+    appending an extension directly to the URL (e.g., `/bags/{name}.json` or
+    `/recipes/{name}.txt`). The URL extension takes precedence over the `Accept`
+    header.
+
+
+    Supported formats:
+
+    - `text/html` (.html) - HTML representation
+
+    - `text/plain` (.txt) - Plain text representation
+
+    - `application/json` (.json) - JSON representation
+
+    - `application/vnd.tiddlyweb+json` - Strict TiddlyWeb JSON representation
+  version: 2.4.3
+servers:
+  - url: http://localhost:8080
+    description: Default TiddlyWeb server
+paths:
+  /:
+    $ref: paths/_.yaml
+  /recipes:
+    $ref: paths/recipes.yaml
+  /recipes/{recipe_name}:
+    $ref: paths/recipes_{recipe_name}.yaml
+  /recipes/{recipe_name}/tiddlers:
+    $ref: paths/recipes_{recipe_name}_tiddlers.yaml
+  /recipes/{recipe_name}/tiddlers/{tiddler_name}:
+    $ref: paths/recipes_{recipe_name}_tiddlers_{tiddler_name}.yaml
+  /bags:
+    $ref: paths/bags.yaml
+  /bags/{bag_name}:
+    $ref: paths/bags_{bag_name}.yaml
+  /bags/{bag_name}/tiddlers:
+    $ref: paths/bags_{bag_name}_tiddlers.yaml
+  /bags/{bag_name}/tiddlers/{tiddler_name}:
+    $ref: paths/bags_{bag_name}_tiddlers_{tiddler_name}.yaml
+  /bags/{bag_name}/tiddlers/{tiddler_name}/revisions:
+    $ref: paths/bags_{bag_name}_tiddlers_{tiddler_name}_revisions.yaml
+  /search:
+    $ref: paths/search.yaml
+  /challenge:
+    $ref: paths/challenge.yaml
+  /challenge/{challenger}:
+    $ref: paths/challenge_{challenger}.yaml

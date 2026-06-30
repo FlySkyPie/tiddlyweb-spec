@@ -1,0 +1,13 @@
+{
+  "name": "tiddlyweb-spec",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "bundle:spec": "redocly bundle spec/openapi.yaml --output dist/openapi.json",
+    "build:spec": "redocly build-docs spec/openapi.yaml --output=dist/index.html"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.35.1"
+  }
+}

@@ -1,0 +1,7 @@
+version = 1
+
+[[annotations]]
+path = [".gitignore", "REUSE.toml", "package.json", "pnpm-lock.yaml"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Wei Ji (FlySkyPie)"
+SPDX-License-Identifier = "MIT"

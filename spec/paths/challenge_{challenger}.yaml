@@ -1,0 +1,62 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Get challenger interface
+  operationId: getChallenger
+  parameters:
+    - name: challenger
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddlyweb_redirect
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Challenger interface
+    '302':
+      description: Redirect to challenger
+    '401':
+      description: Unauthorized (Prompts challenge)
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+post:
+  summary: Submit challenger credentials
+  operationId: postChallenger
+  parameters:
+    - name: challenger
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    content:
+      application/x-www-form-urlencoded:
+        schema:
+          type: object
+          properties:
+            user:
+              type: string
+            password:
+              type: string
+            tiddlyweb_redirect:
+              type: string
+  responses:
+    '200':
+      description: Authentication successful
+    '303':
+      description: Redirect after authentication
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+        Location:
+          $ref: ../components/headers/Location.yaml
+    '401':
+      description: Invalid credentials
+    '404':
+      $ref: ../components/responses/404NotFound.yaml

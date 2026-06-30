@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Root page
+  operationId: getRoot
+  responses:
+    '200':
+      description: Root page HTML
+      content:
+        text/html:
+          schema:
+            type: string

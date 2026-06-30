@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: List all bags
+  operationId: listBags
+  parameters:
+    - $ref: ../components/parameters/SelectParam.yaml
+    - $ref: ../components/parameters/SortParam.yaml
+    - $ref: ../components/parameters/LimitParam.yaml
+    - $ref: ../components/parameters/IfNoneMatch.yaml
+    - $ref: ../components/parameters/IfModifiedSince.yaml
+  responses:
+    '200':
+      description: List of bags
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        Last-Modified:
+          $ref: ../components/headers/LastModified.yaml
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              type: string
+        text/html:
+          schema:
+            type: string
+        application/vnd.tiddlyweb+json:
+          schema:
+            type: array
+            items:
+              type: string
+    '304':
+      $ref: ../components/responses/304NotModified.yaml

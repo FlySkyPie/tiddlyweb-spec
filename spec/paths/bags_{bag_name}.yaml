@@ -1,0 +1,77 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Get a bag
+  operationId: getBag
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/IfNoneMatch.yaml
+  responses:
+    '200':
+      description: Bag details
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+      content:
+        text/html:
+          schema:
+            type: string
+        application/vnd.tiddlyweb+json:
+          schema:
+            $ref: ../components/schemas/Bag.yaml
+    '304':
+      $ref: ../components/responses/304NotModified.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+put:
+  summary: Create or update a bag
+  operationId: putBag
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/vnd.tiddlyweb+json:
+        schema:
+          $ref: ../components/schemas/Bag.yaml
+  responses:
+    '204':
+      description: Bag updated successfully
+      headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+    '400':
+      $ref: ../components/responses/400BadRequest.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '409':
+      $ref: ../components/responses/409Conflict.yaml
+    '415':
+      $ref: ../components/responses/415UnsupportedMediaType.yaml
+delete:
+  summary: Delete a bag
+  operationId: deleteBag
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Bag deleted successfully
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml

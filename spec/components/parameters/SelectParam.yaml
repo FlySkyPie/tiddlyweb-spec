@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+name: select
+in: query
+description: >-
+  Filter by matching an attribute (e.g., `select=tag:systemConfig` or
+  `select=title:!Welcome`)
+schema:
+  type: string

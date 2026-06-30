@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+type: object
+properties:
+  title:
+    type: string
+  text:
+    type: string
+  modifier:
+    type: string
+  modified:
+    type: string
+  created:
+    type: string
+  creator:
+    type: string
+  bag:
+    type: string
+  recipe:
+    type: string
+  revision:
+    type: string
+  tags:
+    type: array
+    items:
+      type: string
+  fields:
+    type: object
+    additionalProperties:
+      type: string
+  type:
+    type: string
+  permissions:
+    type: array
+    items:
+      type: string
+  uri:
+    type: string

@@ -1,0 +1,79 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Get revisions list for a tiddler from a bag
+  operationId: getBagTiddlerRevisions
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddler_name
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: List of tiddler revisions
+      content:
+        text/plain:
+          schema:
+            type: array
+            items:
+              type: string
+        text/html:
+          schema:
+            type: string
+        application/vnd.tiddlyweb+json:
+          schema:
+            type: array
+            items:
+              type: object
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+post:
+  summary: Post revisions to a tiddler
+  description: Create new revisions for a tiddler (chronicle)
+  operationId: postBagTiddlerRevisions
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddler_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/IfMatch.yaml
+  requestBody:
+    required: true
+    content:
+      application/vnd.tiddlyweb+json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+  responses:
+    '204':
+      description: Revisions created successfully
+      headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+    '400':
+      $ref: ../components/responses/400BadRequest.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '409':
+      $ref: ../components/responses/409Conflict.yaml
+    '412':
+      $ref: ../components/responses/412PreconditionFailed.yaml
+    '415':
+      $ref: ../components/responses/415UnsupportedMediaType.yaml

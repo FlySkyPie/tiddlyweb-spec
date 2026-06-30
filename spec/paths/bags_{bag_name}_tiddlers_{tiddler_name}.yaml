@@ -1,0 +1,113 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Get a tiddler from a bag
+  operationId: getBagTiddler
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddler_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/FatParam.yaml
+    - $ref: ../components/parameters/RenderParam.yaml
+    - $ref: ../components/parameters/IfNoneMatch.yaml
+    - $ref: ../components/parameters/IfModifiedSince.yaml
+  responses:
+    '200':
+      description: Tiddler content
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+        Last-Modified:
+          $ref: ../components/headers/LastModified.yaml
+      content:
+        text/plain:
+          schema:
+            type: string
+        text/html:
+          schema:
+            type: string
+        application/vnd.tiddlyweb+json:
+          schema:
+            $ref: ../components/schemas/Tiddler.yaml
+    '302':
+      description: Found (used for _canonical_uri redirects)
+    '304':
+      $ref: ../components/responses/304NotModified.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+put:
+  summary: Create or update a tiddler in a bag
+  operationId: putBagTiddler
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddler_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/IfMatch.yaml
+  requestBody:
+    required: true
+    content:
+      text/plain:
+        schema:
+          type: string
+      application/vnd.tiddlyweb+json:
+        schema:
+          $ref: ../components/schemas/Tiddler.yaml
+  responses:
+    '204':
+      description: Tiddler updated successfully
+      headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+    '400':
+      $ref: ../components/responses/400BadRequest.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '409':
+      $ref: ../components/responses/409Conflict.yaml
+    '412':
+      $ref: ../components/responses/412PreconditionFailed.yaml
+    '415':
+      $ref: ../components/responses/415UnsupportedMediaType.yaml
+delete:
+  summary: Delete a tiddler from a bag
+  operationId: deleteBagTiddler
+  parameters:
+    - name: bag_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: tiddler_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/IfMatch.yaml
+  responses:
+    '204':
+      description: Tiddler deleted successfully
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+    '412':
+      $ref: ../components/responses/412PreconditionFailed.yaml

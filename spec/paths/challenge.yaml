@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: List available challengers
+  operationId: listChallengers
+  responses:
+    '200':
+      description: List of challengers
+      content:
+        text/html:
+          schema:
+            type: string
+    '302':
+      description: Redirects automatically if only one challenger is configured

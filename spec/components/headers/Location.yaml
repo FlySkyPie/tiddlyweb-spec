@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+description: URI of the newly created or updated resource
+schema:
+  type: string

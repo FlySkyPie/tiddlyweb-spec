@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+name: If-None-Match
+in: header
+description: ETag used to check if the resource has been modified
+schema:
+  type: string

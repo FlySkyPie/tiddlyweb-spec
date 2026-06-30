@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+type: object
+properties:
+  name:
+    type: string
+  desc:
+    type: string
+  policy:
+    $ref: ./Policy.yaml
+  recipe:
+    type: array
+    items:
+      type: array
+      items:
+        type: string

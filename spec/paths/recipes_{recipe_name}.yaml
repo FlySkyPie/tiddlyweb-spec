@@ -1,0 +1,83 @@
+# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# 
+# SPDX-License-Identifier: BSD-3-Clause
+get:
+  summary: Get a recipe
+  operationId: getRecipe
+  parameters:
+    - name: recipe_name
+      in: path
+      required: true
+      schema:
+        type: string
+    - $ref: ../components/parameters/IfNoneMatch.yaml
+  responses:
+    '200':
+      description: Recipe details
+      headers:
+        ETag:
+          $ref: ../components/headers/ETag.yaml
+      content:
+        text/plain:
+          schema:
+            type: string
+        text/html:
+          schema:
+            type: string
+        application/vnd.tiddlyweb+json:
+          schema:
+            $ref: ../components/schemas/Recipe.yaml
+    '304':
+      $ref: ../components/responses/304NotModified.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
+put:
+  summary: Create or update a recipe
+  operationId: putRecipe
+  parameters:
+    - name: recipe_name
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      text/plain:
+        schema:
+          type: string
+      application/vnd.tiddlyweb+json:
+        schema:
+          $ref: ../components/schemas/Recipe.yaml
+  responses:
+    '204':
+      description: Recipe updated successfully
+      headers:
+        Location:
+          $ref: ../components/headers/Location.yaml
+    '400':
+      $ref: ../components/responses/400BadRequest.yaml
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '409':
+      $ref: ../components/responses/409Conflict.yaml
+    '415':
+      $ref: ../components/responses/415UnsupportedMediaType.yaml
+delete:
+  summary: Delete a recipe
+  operationId: deleteRecipe
+  parameters:
+    - name: recipe_name
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Recipe deleted successfully
+    '403':
+      $ref: ../components/responses/403Forbidden.yaml
+    '404':
+      $ref: ../components/responses/404NotFound.yaml
