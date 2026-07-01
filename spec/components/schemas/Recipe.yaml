@@ -1,17 +1,47 @@
 # SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
+# SPDX-FileCopyrightText: 2026 Wei Ji (FlySkyPie)
 # 
 # SPDX-License-Identifier: BSD-3-Clause
 type: object
+description: >
+  A Recipe is an ordered list of (bag, filter) pairs that generates a collection
+  of tiddlers.
+
+  Tiddlers from later bags override those from earlier bags with the same title
+  (OverlayFS-like behavior).
 properties:
   name:
     type: string
+    description: The unique name of this recipe.
   desc:
     type: string
+    description: An optional human-readable description of this recipe.
   policy:
     $ref: ./Policy.yaml
+    description: Access control policy governing who can read/write/manage this recipe.
   recipe:
     type: array
+    description: >
+      An ordered list of (bag_name, filter_string) tuples that defines the
+      tiddler collection.
+
+      Each tuple represents a bag layer; later layers override earlier layers
+      when tiddler titles collide.
+
+      The filter_string may be empty (meaning all tiddlers from the bag are
+      included) or contain
+
+      a filter expression (e.g. "select=tag:important") to select a subset of
+      tiddlers.
     items:
       type: array
+      description: A (bag_name, filter_string) tuple — exactly 2 elements.
+      minItems: 2
+      maxItems: 2
       items:
         type: string
+        description: >
+          Position 0: The bag name (required, non-empty).
+
+          Position 1: The filter string (may be empty string for no filter, or a
+          TiddlyWeb filter expression).
