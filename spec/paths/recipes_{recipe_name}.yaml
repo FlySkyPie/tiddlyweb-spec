@@ -70,7 +70,10 @@ put:
     content:
       text/plain:
         schema:
-          $ref: ../components/schemas/TiddlyText.yaml
+          $ref: ../components/schemas/RecipeText.yaml
+      application/json:
+        schema:
+          $ref: ../components/schemas/Recipe.yaml
       application/vnd.tiddlyweb+json:
         schema:
           $ref: ../components/schemas/Recipe.yaml
