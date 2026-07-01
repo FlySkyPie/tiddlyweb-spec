@@ -1,3 +1,17 @@
+description: |
+  A Revision is a historical snapshot (version) of a tiddler at a specific point
+  in time. Each revision preserves the complete state of a tiddler — its text,
+  metadata, and extended fields — as it existed when saved.
+
+  The revisions collection is ordered from newest to oldest. The latest revision
+  (index 0) represents the current state of the tiddler.
+
+  When a tiddler is created, its first revision is recorded. Each subsequent
+  update (PUT) creates a new revision, forming a complete version history.
+
+  The POST operation (chronicle) allows importing an ordered list of revision
+  snapshots into a tiddler, preserving revision history when renaming or
+  migrating tiddlers.
 get:
   summary: Get revisions list for a tiddler from a bag
   operationId: getBagTiddlerRevisions

@@ -1,4 +1,17 @@
 type: object
+description: >
+  A Revision is a historical snapshot (version) of a tiddler at a specific point
+  in time. Each revision preserves the complete state of a tiddler — its text,
+  metadata, and extended fields — as it existed when that version was saved.
+
+  Revisions are ordered sequentially: the first revision represents the tiddler's
+  initial creation, and each subsequent revision records the state after an
+  update. The latest revision (highest revision number) is the current state of
+  the tiddler.
+
+  The revision identifier format is store-specific (e.g., an integer for the
+  text store, a hash for other stores). It is used for optimistic concurrency
+  control via the `If-Match` header.
 properties:
   revision:
     type: integer
