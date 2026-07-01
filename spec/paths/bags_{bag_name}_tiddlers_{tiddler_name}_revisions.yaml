@@ -18,9 +18,8 @@ get:
       content:
         text/plain:
           schema:
-            type: array
-            items:
-              type: string
+            type: string
+            description: Newline-separated list of "title:revision" pairs (e.g. "TestOne:1\nTestTwo:2\nTestThree:3")
         text/html:
           schema:
             type: string
@@ -29,6 +28,69 @@ get:
             type: array
             items:
               type: object
+              properties:
+                revision:
+                  type: integer
+                  description: Revision number (store-specific)
+                title:
+                  type: string
+                  description: Tiddler title
+                creator:
+                  type: string
+                  description: Creator of the tiddler
+                created:
+                  type: string
+                  description: Creation timestring (YYYYMMDDHHMMSS format)
+                modifier:
+                  type: string
+                  description: Last modifier of the tiddler
+                modified:
+                  type: string
+                  description: Modification timestring (YYYYMMDDHHMMSS format)
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: List of tags
+                type:
+                  type: string
+                  nullable: true
+                  description: Content type of the tiddler (null if default wikitext)
+                fields:
+                  type: object
+                  description: Extended (custom) fields on the tiddler
+                  additionalProperties:
+                    type: string
+                bag:
+                  type: string
+                  description: Name of the bag containing this tiddler
+                recipe:
+                  type: string
+                  nullable: true
+                  description: Name of the recipe (null if accessed via bag)
+                permissions:
+                  type: array
+                  items:
+                    type: string
+                  description: Permissions the current user has on this tiddler
+                uri:
+                  type: string
+                  format: uri
+                  description: URI to this revision of the tiddler
+              required:
+                - revision
+                - title
+                - creator
+                - created
+                - modifier
+                - modified
+                - tags
+                - type
+                - fields
+                - bag
+                - recipe
+                - permissions
+                - uri
     '404':
       $ref: ../components/responses/404NotFound.yaml
 post:
