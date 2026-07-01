@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "bundle:spec": "redocly bundle spec/openapi.yaml --output dist/openapi.json",
+    "bundle:spec": "redocly bundle spec/openapi.yaml --output dist/openapi.yaml",
     "build:spec": "redocly build-docs spec/openapi.yaml --output=dist/index.html"
   },
   "devDependencies": {
