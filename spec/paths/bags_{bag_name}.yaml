@@ -18,6 +18,9 @@ get:
         text/html:
           schema:
             type: string
+        application/json:
+          schema:
+            $ref: ../components/schemas/Bag.yaml
         application/vnd.tiddlyweb+json:
           schema:
             $ref: ../components/schemas/Bag.yaml
@@ -27,6 +30,8 @@ get:
       $ref: ../components/responses/403Forbidden.yaml
     '404':
       $ref: ../components/responses/404NotFound.yaml
+    '415':
+      $ref: ../components/responses/415UnsupportedMediaType.yaml
 put:
   summary: Create or update a bag
   operationId: putBag
