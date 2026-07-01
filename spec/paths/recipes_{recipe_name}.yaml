@@ -1,6 +1,29 @@
 get:
   summary: Get a recipe
   operationId: getRecipe
+  description: >
+    Returns the recipe definition (name, description, policy, and ordered list
+    of
+
+    (bag, filter) pairs) in the requested format.
+
+
+    The current user must have **read** permission on the recipe's policy to
+    access it.
+
+
+    The response format differs by content type:
+
+
+    - **text/plain**: RFC 822-style headers followed by a newline-separated list
+    of bag entries.
+      Each bag entry is either a bare bag name (for special bags) or a
+      `/bags/{bag_name}/tiddlers` path, optionally appended with `?{filter_expression}`.
+    - **application/vnd.tiddlyweb+json**: A structured JSON object with `name`,
+    `desc`,
+      `policy`, and `recipe` (the ordered list of (bag, filter) pairs) fields.
+    - **text/html**: An HTML page displaying the recipe's metadata and bag
+    listing.
   parameters:
     - name: recipe_name
       in: path
@@ -17,10 +40,13 @@ get:
       content:
         text/plain:
           schema:
-            $ref: ../components/schemas/TiddlyText.yaml
+            $ref: ../components/schemas/RecipeText.yaml
         text/html:
           schema:
             type: string
+            description: |
+              HTML page displaying the recipe's name, description, policy, and a
+              listing of the (bag, filter) pairs that define the recipe.
         application/vnd.tiddlyweb+json:
           schema:
             $ref: ../components/schemas/Recipe.yaml

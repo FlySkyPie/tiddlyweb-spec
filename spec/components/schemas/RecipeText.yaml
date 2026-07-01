@@ -1,0 +1,39 @@
+type: string
+description: >
+  Plain text representation of a recipe, using an RFC 822-style header format
+
+  followed by a blank line and a newline-separated list of bag entries.
+
+
+  **Headers** (first two lines):
+
+  - `desc:` — The recipe's human-readable description (may be empty).
+
+  - `policy:` — The recipe's policy as a JSON-serialized dictionary of access
+  control lists.
+
+
+  **Body** (after the blank line):
+
+  - Each line is a bag entry. For normal bags, the format is
+  `/bags/{bag_name}/tiddlers`.
+
+  - For special bags (those with a registered retriever), the bare bag name is
+  used instead.
+
+  - If a filter expression is associated with the bag, it is appended as a query
+  string:
+    `/bags/{bag_name}/tiddlers?{filter_expression}`.
+examples:
+  - >
+    desc: My recipe description
+
+    policy:
+    {"read":["R"],"write":["W"],"create":["W"],"delete":["W"],"manage":["M"],"accept":[],"owner":"admin"}
+
+
+    /bags/system/tiddlers?select=tag:important
+
+    /bags/private/tiddlers
+
+    special_bag
