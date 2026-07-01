@@ -1,0 +1,14 @@
+type: string
+description: >
+  Plain text representation of a list of tiddlers, with one tiddler title per
+  line.
+
+  Each line contains the title of a single tiddler, terminated by a newline
+  character.
+
+  For revision lists, each line is formatted as `{title}:{revision}` instead.
+examples:
+  - |
+    HelloWorld
+    GettingStarted
+    MyTiddler

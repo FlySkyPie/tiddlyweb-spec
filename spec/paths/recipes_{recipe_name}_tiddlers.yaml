@@ -24,9 +24,7 @@ get:
       content:
         text/plain:
           schema:
-            type: array
-            items:
-              type: string
+            $ref: ../components/schemas/TiddlersText.yaml
         text/html:
           schema:
             type: string
