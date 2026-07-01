@@ -1,6 +1,21 @@
 get:
   summary: List all recipes
   operationId: listRecipes
+  description: >
+    Returns the names of all recipes that the current user has permission to
+    read.
+
+    The response format differs by content type:
+
+
+    - **text/plain**: Newline-separated list of recipe names (e.g.
+    `"recipe0\nrecipe1\n"`)
+
+    - **application/vnd.tiddlyweb+json**: JSON array of recipe name strings
+    (e.g. `["recipe0", "recipe1"]`)
+
+    - **text/html**: HTML page with a `<ul id="recipes">` listing each recipe as
+    a link to its detail page
   parameters:
     - $ref: ../components/parameters/SelectParam.yaml
     - $ref: ../components/parameters/SortParam.yaml
@@ -9,7 +24,24 @@ get:
     - $ref: ../components/parameters/IfModifiedSince.yaml
   responses:
     '200':
-      description: List of recipes
+      description: >
+        A list of recipe names readable by the current user. Each response type
+
+        represents the same data — an ordered collection of recipe name strings
+        —
+
+        but in a different format.
+
+
+        The list is constructed by:
+
+        1. Fetching all recipes from the store
+
+        2. Applying any `select`/`sort`/`limit` filters
+
+        3. Removing recipes the current user lacks read permission on
+
+        4. Serializing the result in the requested format
       headers:
         ETag:
           $ref: ../components/headers/ETag.yaml
@@ -17,18 +49,75 @@ get:
           $ref: ../components/headers/LastModified.yaml
       content:
         text/plain:
+          description: |
+            Newline-separated list of recipe names. Each line contains
+            exactly one recipe name followed by `\n`. No trailing blank line.
           schema:
             type: array
             items:
               type: string
+          example: |
+            recipe0
+            recipe1
+            recipe2
+            recipe3
+            recipe4
         text/html:
+          description: |
+            HTML page rendering the recipe list as a bulleted listing.
+            Each recipe name is a hyperlink to `recipes/{recipe_name}`
+            for browsing in a browser.
           schema:
             type: string
+          example: >
+            <!DOCTYPE HTML>
+
+            <html>
+
+            <head><meta charset="UTF-8"><title>TiddlyWeb -
+            Recipes</title></head>
+
+            <body>
+
+            <div id="header"><h1>Recipes</h1></div>
+
+            <div id="content">
+
+            <ul id="recipes" class="listing">
+
+            <li><a href="recipes/recipe0">recipe0</a></li>
+
+            <li><a href="recipes/recipe1">recipe1</a></li>
+
+            <li><a href="recipes/recipe2">recipe2</a></li>
+
+            <li><a href="recipes/recipe3">recipe3</a></li>
+
+            <li><a href="recipes/recipe4">recipe4</a></li>
+
+            </ul>
+
+            </div>
+
+            </body>
+
+            </html>
         application/vnd.tiddlyweb+json:
+          description: |
+            JSON array of recipe name strings. This is the strict TiddlyWeb
+            JSON format: a flat array where each element is simply the
+            recipe's name — unlike `GET /recipes/{name}` which returns
+            a full recipe object with policy and filter definitions.
           schema:
             type: array
             items:
               type: string
+          example:
+            - recipe0
+            - recipe1
+            - recipe2
+            - recipe3
+            - recipe4
     '304':
       $ref: ../components/responses/304NotModified.yaml
     '400':
