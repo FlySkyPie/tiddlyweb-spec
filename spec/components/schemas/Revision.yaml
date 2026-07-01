@@ -24,12 +24,14 @@ properties:
     description: Creator of the tiddler
   created:
     type: string
+    pattern: '^\d{14}$'
     description: Creation timestring (YYYYMMDDHHMMSS format)
   modifier:
     type: string
     description: Last modifier of the tiddler
   modified:
     type: string
+    pattern: '^\d{14}$'
     description: Modification timestring (YYYYMMDDHHMMSS format)
   tags:
     type: array

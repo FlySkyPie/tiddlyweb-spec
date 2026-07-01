@@ -42,12 +42,14 @@ properties:
     description: The username of the person who last modified this tiddler.
   modified:
     type: string
+    pattern: '^\d{14}$'
     description: |
       Timestring representing when this tiddler was last modified.
       Format: `YYYYMMDDHHMMSS` (14-digit UTC timestamp).
       Defaults to the current time when the tiddler is created.
   created:
     type: string
+    pattern: '^\d{14}$'
     description: |
       Timestring representing when this tiddler was created.
       Format: `YYYYMMDDHHMMSS` (14-digit UTC timestamp).
