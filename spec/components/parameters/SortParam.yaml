@@ -2,7 +2,10 @@ name: sort
 in: query
 description: |
   Sort the collection by an attribute. Prefix with `-` for descending order.
-  Examples: `sort=modified`, `sort=-created`, `sort=title`
 schema:
   type: string
   pattern: ^-?\w+$
+  examples:
+    - sort=modified
+    - sort=-created
+    - sort=title

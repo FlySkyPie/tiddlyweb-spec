@@ -7,9 +7,10 @@ description: >
   `attribute:>value` (greater than), `attribute:<value` (less than).
 
   Supported special attributes: `tag`, `text`, `field`, `rbag`.
-
-  Examples: `select=tag:systemConfig`, `select=title:!Welcome`,
-  `select=modified:>20260101000000`
 schema:
   type: string
   pattern: ^\w+:[!><]?.+$
+  examples:
+    - select=tag:systemConfig
+    - select=title:!Welcome
+    - select=modified:>20260101000000

@@ -2,7 +2,9 @@ name: limit
 in: query
 description: |
   Limit the number of items returned. Syntax: `<count>` or `<index>,<count>`.
-  Examples: `limit=10`, `limit=0,10`
 schema:
   type: string
   pattern: ^\d+(,\d+)?$
+  Examples:
+    - limit=10
+    - limit=0,10
