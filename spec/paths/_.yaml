@@ -1,10 +1,62 @@
 get:
   summary: Root page
   operationId: getRoot
+  description: >
+    Returns an HTML landing page that serves as the entry point to the TiddlyWeb
+    API.
+
+    The page displays a navigation listing with links to the two primary
+    resource
+
+    collections: `/recipes` and `/bags`.
   responses:
     '200':
-      description: Root page HTML
+      description: >
+        An HTML page with a `<ul id="root">` listing containing links to the
+
+        recipes and bags collections. The page is rendered using the HTML
+        serializer,
+
+        which wraps the content in a full HTML document with a header and
+        footer.
+
+        The page title is set to "Home".
       content:
         text/html:
           schema:
             type: string
+            description: >
+              Full HTML document containing a navigation page with links to
+
+              `/recipes` and `/bags`. The `{server_prefix}` is replaced with
+
+              the configured server prefix (typically empty string or a path
+              prefix).
+            examples:
+              - >
+                <!DOCTYPE HTML>
+
+                <html>
+
+                <head><meta charset="UTF-8"><title>TiddlyWeb -
+                Home</title></head>
+
+                <body>
+
+                <div id="header"><h1>Home</h1></div>
+
+                <div id="content">
+
+                <ul id="root" class="listing">
+
+                <li><a href="/recipes">recipes</a></li>
+
+                <li><a href="/bags">bags</a></li>
+
+                </ul>
+
+                </div>
+
+                </body>
+
+                </html>
