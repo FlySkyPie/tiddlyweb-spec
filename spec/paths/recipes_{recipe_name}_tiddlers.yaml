@@ -34,14 +34,7 @@ get:
           schema:
             type: array
             items:
-              type: object
-              properties:
-                title:
-                  type: string
-                revision:
-                  type: string
-                bag:
-                  type: string
+              $ref: ../components/schemas/Tiddler.yaml
     '304':
       $ref: ../components/responses/304NotModified.yaml
     '400':

@@ -106,3 +106,9 @@ properties:
       The canonical API URL for this tiddler, e.g.,
       `http://localhost:8080/bags/{bag_name}/tiddlers/{tiddler_title}`.
       This is a computed field, not stored.
+  render:
+    type: string
+    description: >
+      The rendered wikitext output of this tiddler's `text` field.
+      Only included when `?render=1` is specified in the request query string.
+      This is a computed field generated on-the-fly by the server, not stored.
