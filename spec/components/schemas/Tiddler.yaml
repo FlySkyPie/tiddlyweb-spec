@@ -1,36 +1,108 @@
 type: object
+description: >
+  The primary content object in the TiddlyWiki and TiddlyWeb universe,
+
+  representing a distinct piece of content (analogous to a "page" in wiki
+  systems).
+
+  A Tiddler has text content and associated metadata. The text can be anything —
+
+  wikitext, JavaScript code, or binary data (e.g., images) encoded as base64.
+
+
+  This schema represents the JSON serialization of a Tiddler as returned by the
+  API.
+
+  When listing tiddlers (e.g., GET /bags/{bag_name}/tiddlers), the `text` field
+  is
+
+  omitted by default; use `?fat=1` to include it. When fetching a single tiddler
+
+  (e.g., GET /bags/{bag_name}/tiddlers/{tiddler_name}), `text` is included by
+  default;
+
+  use `?fat=0` to omit it.
 properties:
   title:
     type: string
+    description: The unique name of this tiddler. Required when creating a tiddler.
   text:
     type: string
+    description: >
+      The content body of the tiddler. This can be plain text, wikitext,
+      JavaScript,
+
+      or any other textual content. For binary tiddlers (when `type` indicates a
+
+      binary MIME type), the text is base64-encoded. Omitted from list responses
+
+      unless `?fat=1` is specified.
   modifier:
     type: string
+    description: The username of the person who last modified this tiddler.
   modified:
     type: string
+    description: |
+      Timestring representing when this tiddler was last modified.
+      Format: `YYYYMMDDHHMMSS` (14-digit UTC timestamp).
+      Defaults to the current time when the tiddler is created.
   created:
     type: string
+    description: |
+      Timestring representing when this tiddler was created.
+      Format: `YYYYMMDDHHMMSS` (14-digit UTC timestamp).
   creator:
     type: string
+    description: |
+      The username of the person who created this tiddler.
+      If not explicitly set, defaults to the value of `modifier`.
   bag:
     type: string
+    description: >-
+      The name of the bag that contains this tiddler. Set automatically by the
+      server based on the bag or recipe used to access the tiddler.
   recipe:
     type: string
+    description: >-
+      The name of the recipe through which this tiddler was accessed (if
+      applicable). Set automatically by the server.
   revision:
     type: string
+    description: |
+      The revision identifier for this tiddler. The format is store-dependent
+      (e.g., an integer for the text store, a hash for other stores). Used for
+      optimistic concurrency control via the `If-Match` header.
   tags:
     type: array
+    description: A list of tag strings that categorize or describe this tiddler.
     items:
       type: string
   fields:
     type: object
+    description: |
+      An arbitrary dictionary of extended (custom) fields on the tiddler.
+      These are user-defined key-value pairs (both strings) that provide
+      additional metadata beyond the built-in fields.
     additionalProperties:
       type: string
   type:
     type: string
+    description: |
+      The content type of the tiddler's text. If `null` or absent, the text is
+      treated as default wikitext. When set to a MIME type indicating binary
+      content (e.g., `image/png`, `application/pdf`), the `text` field is
+      base64-encoded.
   permissions:
     type: array
+    description: |
+      A list of permission strings the current authenticated user has on this
+      tiddler, derived from the containing bag's policy. Possible values include
+      `read`, `write`, `create`, `delete`, `manage`.
     items:
       type: string
   uri:
     type: string
+    description: |
+      The canonical API URL for this tiddler, e.g.,
+      `http://localhost:8080/bags/{bag_name}/tiddlers/{tiddler_title}`.
+      This is a computed field, not stored.
