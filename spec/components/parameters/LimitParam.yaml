@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
-# 
-# SPDX-License-Identifier: BSD-3-Clause
 name: limit
 in: query
 description: Limit the number of items returned (e.g., `limit=10` or `limit=0,10`)

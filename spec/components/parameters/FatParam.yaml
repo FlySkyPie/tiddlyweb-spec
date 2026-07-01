@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
-# 
-# SPDX-License-Identifier: BSD-3-Clause
 name: fat
 in: query
 description: If set to 1, includes the full `text` of the tiddler(s) in JSON responses

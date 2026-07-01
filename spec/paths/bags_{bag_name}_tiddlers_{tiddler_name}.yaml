@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
-# 
-# SPDX-License-Identifier: BSD-3-Clause
 get:
   summary: Get a tiddler from a bag
   operationId: getBagTiddler
@@ -30,7 +27,7 @@ get:
       content:
         text/plain:
           schema:
-            type: string
+            $ref: ../components/schemas/TiddlyText.yaml
         text/html:
           schema:
             type: string
@@ -65,7 +62,7 @@ put:
     content:
       text/plain:
         schema:
-          type: string
+          $ref: ../components/schemas/TiddlyText.yaml
       application/vnd.tiddlyweb+json:
         schema:
           $ref: ../components/schemas/Tiddler.yaml

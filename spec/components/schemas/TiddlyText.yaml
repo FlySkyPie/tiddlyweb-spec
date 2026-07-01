@@ -1,0 +1,10 @@
+type: string
+example: |
+  modifier: someone
+  created: 20260101000000
+  modified: 20260101120000
+  tags: tag1 tag2
+  type: text/x-markdown
+  custom_field: value
+
+  tiddler text content here...

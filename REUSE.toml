@@ -12,3 +12,12 @@ path = [
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Wei Ji (FlySkyPie)"
 SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ["spec/**/*"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = [
+    "2008-2016 UnaMesa Association",
+    "2026 Wei Ji (FlySkyPie)",
+]
+SPDX-License-Identifier = "BSD-3-Clause"

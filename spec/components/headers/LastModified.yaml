@@ -1,6 +1,3 @@
-# SPDX-FileCopyrightText: 2008-2016 UnaMesa Association
-# 
-# SPDX-License-Identifier: BSD-3-Clause
 description: Last modified HTTP date of the resource
 schema:
   type: string
