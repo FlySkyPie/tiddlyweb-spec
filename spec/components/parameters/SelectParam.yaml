@@ -1,7 +1,15 @@
 name: select
 in: query
-description: >-
-  Filter by matching an attribute (e.g., `select=tag:systemConfig` or
-  `select=title:!Welcome`)
+description: >
+  Filter by matching an attribute value. Syntax: `attribute:value`,
+  `attribute:!value` (not equal),
+
+  `attribute:>value` (greater than), `attribute:<value` (less than).
+
+  Supported special attributes: `tag`, `text`, `field`, `rbag`.
+
+  Examples: `select=tag:systemConfig`, `select=title:!Welcome`,
+  `select=modified:>20260101000000`
 schema:
   type: string
+  pattern: ^\w+:[!><]?.+$
