@@ -49,75 +49,73 @@ get:
           $ref: ../components/headers/LastModified.yaml
       content:
         text/plain:
-          description: |
-            Newline-separated list of recipe names. Each line contains
-            exactly one recipe name followed by `\n`. No trailing blank line.
-          schema:
-            type: array
-            items:
-              type: string
-          example: |
-            recipe0
-            recipe1
-            recipe2
-            recipe3
-            recipe4
-        text/html:
-          description: |
-            HTML page rendering the recipe list as a bulleted listing.
-            Each recipe name is a hyperlink to `recipes/{recipe_name}`
-            for browsing in a browser.
           schema:
             type: string
-          example: >
-            <!DOCTYPE HTML>
+            description: |
+              Newline-separated list of recipe names. Each line contains
+              exactly one recipe name followed by `\n`. No trailing blank line.
+            examples:
+              - |
+                recipe0
+                recipe1
+                recipe2
+        text/html:
+          schema:
+            type: string
+            description: |
+              HTML page rendering the recipe list as a bulleted listing.
+              Each recipe name is a hyperlink to `recipes/{recipe_name}`
+              for browsing in a browser.
+            examples:
+              - >
+                <!DOCTYPE HTML>
 
-            <html>
+                <html>
 
-            <head><meta charset="UTF-8"><title>TiddlyWeb -
-            Recipes</title></head>
+                <head><meta charset="UTF-8"><title>TiddlyWeb -
+                Recipes</title></head>
 
-            <body>
+                <body>
 
-            <div id="header"><h1>Recipes</h1></div>
+                <div id="header"><h1>Recipes</h1></div>
 
-            <div id="content">
+                <div id="content">
 
-            <ul id="recipes" class="listing">
+                <ul id="recipes" class="listing">
 
-            <li><a href="recipes/recipe0">recipe0</a></li>
+                <li><a href="recipes/recipe0">recipe0</a></li>
 
-            <li><a href="recipes/recipe1">recipe1</a></li>
+                <li><a href="recipes/recipe1">recipe1</a></li>
 
-            <li><a href="recipes/recipe2">recipe2</a></li>
+                <li><a href="recipes/recipe2">recipe2</a></li>
 
-            <li><a href="recipes/recipe3">recipe3</a></li>
+                <li><a href="recipes/recipe3">recipe3</a></li>
 
-            <li><a href="recipes/recipe4">recipe4</a></li>
+                <li><a href="recipes/recipe4">recipe4</a></li>
 
-            </ul>
+                </ul>
 
-            </div>
+                </div>
 
-            </body>
+                </body>
 
-            </html>
+                </html>
         application/vnd.tiddlyweb+json:
-          description: |
-            JSON array of recipe name strings. This is the strict TiddlyWeb
-            JSON format: a flat array where each element is simply the
-            recipe's name — unlike `GET /recipes/{name}` which returns
-            a full recipe object with policy and filter definitions.
           schema:
             type: array
+            description: |
+              JSON array of recipe name strings. This is the strict TiddlyWeb
+              JSON format: a flat array where each element is simply the
+              recipe's name — unlike `GET /recipes/{name}` which returns
+              a full recipe object with policy and filter definitions.
             items:
               type: string
-          example:
-            - recipe0
-            - recipe1
-            - recipe2
-            - recipe3
-            - recipe4
+            examples:
+              - - recipe0
+                - recipe1
+                - recipe2
+                - recipe3
+                - recipe4
     '304':
       $ref: ../components/responses/304NotModified.yaml
     '400':
