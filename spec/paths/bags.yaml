@@ -19,15 +19,20 @@ get:
         text/plain:
           schema:
             type: array
+            description: Linefeed-separated list of bag names, one per line
             items:
               type: string
+              description: Name of a bag
         text/html:
           schema:
             type: string
+            description: Full HTML page displaying bags as a navigation list with links to each bag's tiddlers
         application/vnd.tiddlyweb+json:
           schema:
             type: array
+            description: JSON array of bag name strings
             items:
               type: string
+              description: Name of a bag
     '304':
       $ref: ../components/responses/304NotModified.yaml
